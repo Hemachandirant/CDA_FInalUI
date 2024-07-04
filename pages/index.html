@@ -90,37 +90,40 @@
             </li>
         </ul>
         <!-- /.navbar-top-links -->
+        
     </nav>
+
     <!-- /.sidebar -->
-    <aside class="sidebar navbar-default" role="navigation">
-        <div class="sidebar-nav navbar-collapse">
-            <ul class="nav" id="side-menu">
-                <li class="sidebar-search">
-                    <div class="input-group custom-search-form ">
-                        <input type="text" class="form-control" placeholder="Search...." style="height: 34px;">
-                        <span class="input-group-btn">
-                                    <button class="btn btn-primary small-button" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                    </div>
-                    <!-- /input-group -->
-                </li>
-                <li>
-                    <a href="homepage.html" class="active"><i class="fa fa-home fa-fw"></i>Home</a>
-                </li>
-                <li>
-                    <a href="index.html" class="active"><i class="fa fa-upload fa-fw"></i>Upload Data</a>
-                </li>
-                <li>
-                    <a href="dataWizard.html" class="active"><i class="fa fa-tasks fa-fw"></i>Data Insights</a>
-                </li>
-                <li>
-                    <a href="login.html" class="active"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
-                </li>
-            </ul>
-        </div>
-    </aside>
+    <aside class="sidebar navbar-default" role="navigation">  
+        <button id="sidebarToggle" class="btn btn-primary"><i class="fa fa-bars"></i></button>  
+        <div class="sidebar-nav navbar-collapse">  
+            <ul class="nav" id="side-menu">  
+                <li class="sidebar-search">  
+                    <div class="input-group">  
+                        <input type="text" class="form-control custom-search-form" placeholder="Search...." style="height: 34px;">  
+                        <span class="input-group-btn">  
+                            <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>  
+                        </span>  
+                    </div>  
+                </li>  
+                <li>  
+                    <a href="homepage.html" class="active"><i class="fa fa-home fa-fw"></i><span class="menu-text"> Home</span></a>  
+                </li>  
+                <li>  
+                    <a href="index.html" class="active"><i class="fa fa-upload fa-fw"></i><span class="menu-text"> Upload Data</span></a>  
+                </li>  
+                <li>  
+                    <a href="dataWizard.html" class="active"><i class="fa fa-tasks fa-fw"></i><span class="menu-text"> Data Insights</span></a>  
+                </li>  
+                <li>  
+                    <a href="login.html" class="active"><i class="fa fa-sign-out fa-fw"></i><span class="menu-text"> Logout</span></a>  
+                </li>  
+            </ul>  
+        </div>  
+    </aside>  
+    
+    
+    
     <div id="js-preloader" class="js-preloader">
         <div class="preloader-inner">
             <span class="dot"></span>
@@ -131,6 +134,7 @@
             </div>
         </div>
     </div>
+
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row">
@@ -317,6 +321,21 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Include the JavaScript to handle the sidebar toggle -->  
+
+<script>  
+    document.addEventListener('DOMContentLoaded', function () {  
+        const sidebar = document.querySelector('.sidebar');  
+        const pageWrapper = document.querySelector('#page-wrapper');  
+        const toggleButton = document.querySelector('#sidebarToggle');  
+
+        toggleButton.addEventListener('click', function () {  
+            sidebar.classList.toggle('minimized');  
+            pageWrapper.classList.toggle('minimized');  
+        });  
+    });  
+    </script> 
 
 <!-- bootstrap modal -->
 </body>

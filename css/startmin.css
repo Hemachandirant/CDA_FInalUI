@@ -11,11 +11,22 @@ body {
    height: 89vh;
 }
 
+#page-wrapper.minimized {  
+   margin-left: 60px;  
+} 
+
 #page-wrapper {
    padding-top: 30px;
-   min-height: 568px;
+   min-height: 250px;
    background-color: #fff;
 }
+
+.sidebar .sidebar-search .custom-search-form {  
+   display: inline-block;  
+   width: calc(100% - 40px); /* Adjust width to accommodate the button */  
+   transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;  
+}
+
 
 @media(min-width:768px) {
    #page-wrapper {
@@ -28,6 +39,8 @@ body {
 
 .navbar-header {
    float: left;
+   align-items: center;
+   
 }
 
 .navbar-left {
@@ -53,6 +66,10 @@ body {
 .navbar-top-links li a {
    padding: 15px;
    min-height: 50px;
+}
+
+.navbar-header .navbar-toggle {
+   margin-right: 10px; 
 }
 
 .navbar-top-links>li>a {
@@ -105,22 +122,86 @@ body {
    left: auto;
 }
 
+
+.sidebar {
+   background-color: #304565;
+   
+}
+
 .sidebar .sidebar-nav.navbar-collapse {
    padding-right: 0;
    padding-left: 0;
+   background-color: #304565;
 }
 
 .sidebar .sidebar-search {
+   border-bottom: none; 
    padding: 15px;
+   display: flex;
+   align-items: center;
+   padding: 10px 15px;
 }
+
+.sidebar .sidebar-search .input-group {
+   width: 100%;
+}
+
+.sidebar .sidebar-search .input-group {  
+   width: 100%;  
+} 
+
+.sidebar .sidebar-search {  
+   display: inline-block;  
+   width: calc(100% - 40px); /* Adjust width to accommodate the button */  
+   transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out; 
+}
+
+.sidebar.minimized .sidebar-search {  
+   opacity: 0;  
+   height: 0;  
+   overflow: hidden;
+   padding-left: 70px;
+   padding-right: 40px;
+   
+}  
+
+.sidebar .sidebar-search .input-group-btn {  
+   display: inline-block;
+} 
+
+.sidebar .sidebar-search .input-group .form-control {  
+   width: calc(100% - 20px); /* Adjust width to fit the input and button */  
+}
+
+.sidebar .sidebar-search .input-group .btn {  
+   margin-left: -1px; /* Adjust to align with input */  
+}
+
 
 .sidebar ul li {
-   border-bottom: 1px solid #e7e7e7;
+   border-bottom: 1px solid #ffffff;
+   color: #ffffff;
 }
 
+.sidebar ul li a:hover {  
+   background-color: #233249; /* Example hover color, replace with your desired color */  
+   color: #ffffff; /* Ensure text remains readable on hover */  
+} 
+
 .sidebar ul li a.active {
-   background-color: #eee;
+   background-color: #122033;
+   color: #ffffff;  
 }
+
+.sidebar .sidebar-search .form-control {  
+   background-color: #233249;  
+   color: #ffffff;  
+}  
+
+.sidebar .sidebar-search .btn-primary {  
+   background-color: #122033;  
+   color: #ffffff;  
+}  
 
 .sidebar .arrow {
    float: right;
@@ -140,6 +221,7 @@ body {
 }
 
 .sidebar .nav-second-level li a {
+   
    padding-left: 37px;
 }
 
@@ -147,12 +229,30 @@ body {
    padding-left: 52px;
 }
 
+.sidebar.minimized {  
+   width: 60px;  
+} 
+
+.sidebar .nav > li > a .menu-text {  
+   display: inline-block;  
+   transition: opacity 0.3s ease-in-out;  
+}  
+ 
+.sidebar.minimized .nav > li > a .menu-text {  
+   opacity: 0;  
+   width: 0;  
+   overflow: hidden;  
+   white-space: nowrap;  
+}
+
+
 @media(min-width:768px) {
    .sidebar {
        z-index: 1;
        position: fixed;
        width: 250px;
        margin-top: 51px;
+       transition: 0.3s;
    }
 
    .navbar-top-links .dropdown-messages,
@@ -1528,3 +1628,16 @@ select {
    cursor: pointer;
  }
  
+
+ #sidebarToggle {  
+   background: none;  
+   border: none;  
+   color: #233249;  
+   font-size: 20px;  
+   margin-top: 10px;  
+   cursor: pointer;  
+   
+}  
+#sidebarToggle:focus {  
+   outline: none;  
+} 
