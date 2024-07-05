@@ -346,7 +346,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
         <script>
-          document.getElementById('searchButton').addEventListener('click', function () {
+        document.getElementById('searchButton').addEventListener('click', function () {
     // Show loading indicator
     document.getElementById('loading').style.display = 'block';
     document.getElementById('tabView').style.display = 'none';
@@ -355,7 +355,7 @@
     const query = document.getElementById('queryInput').value;
 
     // API URL
-    const apiUrl = 'http://127.0.0.1:8001/ask_question';
+    const apiUrl = 'http://127.0.0.1:8001/query';
 
     // Fetch data from the API
     fetch(apiUrl, {
@@ -363,12 +363,12 @@
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ question: query })  // Update the key to match the expected field
+        body: JSON.stringify({ query: query })   // Update the key to match the expected field
     })
     .then(response => response.json())
     .then(data => {
-        fetchedQuery = data.query;
-        let schema = "test";
+        // Assume data is directly an array
+        let results = data.result;
 
         // Clear existing table headers and rows
         const table = document.getElementById('dataTables-example');
@@ -378,20 +378,20 @@
         thead.innerHTML = '';
         tbody.innerHTML = '';
 
-        // Check if data.result is not empty and is an array
-        if (Array.isArray(data.result) && data.result.length > 0) {
+        // Check if results is not empty and is an array
+        if (Array.isArray(results) && results.length > 0) {
             // Create table headers dynamically
-            const headers = Object.keys(data.result[0]);
+            const headers = Object.keys(results[0]);
             const headerRow = document.createElement('tr');
             headers.forEach(header => {
                 const th = document.createElement('th');
                 th.textContent = header;
                 headerRow.appendChild(th);
             });
-            // thead.appendChild(headerRow);
+            thead.appendChild(headerRow);
 
             // Populate the table with new data
-            data.result.forEach(item => {
+            results.forEach(item => {
                 const row = document.createElement('tr');
                 headers.forEach(header => {
                     const td = document.createElement('td');
@@ -419,12 +419,12 @@
         document.getElementById('loading').style.display = 'none';
     });
 });
-let schema ="salesforce_data";
- // Show query in an alert popup
- document.getElementById('showQueryButton').addEventListener('click', () => {
-    alert(`SQL Query: ${fetchedQuery}`);
 
-                });
+// Show query in an alert popup
+document.getElementById('showQueryButton').addEventListener('click', () => {
+    alert(`SQL Query: ${fetchedQuery}`);
+});
+
 const msgerForm = document.querySelector(".msger-inputarea");
 const msgerInput = document.querySelector(".msger-input");
 const msgerChat = document.querySelector(".msger-chat");
