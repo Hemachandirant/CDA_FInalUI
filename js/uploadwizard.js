@@ -355,20 +355,37 @@ document.addEventListener("DOMContentLoaded", function () {
                 text: "Data has been successfully loaded into the Database!",
                 icon: "success",
                 button: "OK",
-            }).then(() => {
-                // Redirect to another page
-                window.location.href = 'dataWizard.html'; 
+            }).then(async () => {
+                try {
+                    window.location.href = 'dataWizard.html';
+                    const createViewResponse = await fetch('http://127.0.0.1:8000/create_view', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({})  // No body needed for this request
+                    });
+                    if (!createViewResponse.ok) {
+                        throw new Error('Failed to create view');
+                    }
+                    console.log('View created successfully');
+                    // Redirect to another page
+                    // window.location.href = 'dataWizard.html';
+                } catch (createViewError) {
+                    console.error('Error creating view:', createViewError);
+                    // Handle the error accordingly, perhaps show another alert or message to the user
+                }
             });
         } catch (error) {
             console.error('Error:', error);
             swal({
-                title: "Success",
-                text: "Data has been successfully loaded into the Database!",
-                icon: "success",
+                title: "Error",
+                text: "There was an error loading data into the Database!",
+                icon: "error",
                 button: "OK",
             }).then(() => {
-                // Redirect to another page
-                window.location.href = 'dataWizard.html'; 
+                // Redirect to another page or handle the error accordingly
+                window.location.href = 'dataWizard.html';
             });
         }
     }
