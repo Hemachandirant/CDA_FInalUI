@@ -175,9 +175,7 @@
                         <input type="text" placeholder="Search your query for analysis" class="search-input" id="queryInput">
                         <select class="search-select" id="searchSelect">
                             <option value="">Select Existing Project</option>
-                            <option value="Resource_Allocations">Resource Allocations</option>
-                            <option value="Employee_Data_2023">Employee Data 2023</option>
-                            <option value="Project_Allocations">Project Allocations</option>
+                            <!-- Options will be populated here -->
                         </select>
                         <button class="search-button" id="searchButton">
                             <i class="fa fa-search"></i>
@@ -354,6 +352,31 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
         <script>
+
+document.addEventListener('DOMContentLoaded', function () {
+        console.log('DOM fully loaded and parsed');
+
+        fetch('http://127.0.0.1:8001/schemas')  // Ensure this URL matches your FastAPI server's URL
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data fetched:', data);
+                const selectElement = document.getElementById('searchSelect');
+                const schemas = data.schemas;
+
+                schemas.forEach(schema => {
+                    const option = document.createElement('option');
+                    option.value = schema;
+                    option.textContent = schema;
+                    selectElement.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching schemas:', error));
+    });
         document.getElementById('searchButton').addEventListener('click', function () {
     // Show loading indicator
     document.getElementById('loading').style.display = 'block';
