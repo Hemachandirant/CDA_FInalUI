@@ -168,13 +168,13 @@
 
          </div>
 
-        <div class="col-lg-8">
+         <div class="col-lg-8">
             <div class="form-group input-group">
                 <div class="search-container">
                     <div class="search-box">
                         <input type="text" placeholder="Search your query for analysis" class="search-input" id="queryInput">
                         <select class="search-select" id="searchSelect">
-                            <option value="">Select Existing Project</option>
+                            <option value="">Select Project</option>
                             <!-- Options will be populated here -->
                         </select>
                         <button class="search-button" id="searchButton">
@@ -185,7 +185,6 @@
                 </div>
             </div>
         </div>
-
 
 
         <div class="row">
@@ -219,7 +218,6 @@
                                             <!-- Details -->
                                         </div>
                                         <div class="panel-body">
-                                            <button id="showQueryButton" class="btn btn-primary mb-3">Show Query</button>
                                             <div class="table-responsive">
                                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                     <thead>
@@ -228,13 +226,16 @@
                                                     <tbody>
                                                         <!-- Rows will be populated by JavaScript -->
                                                     </tbody>
-                                                </table>                             </div>
+                                                </table>                             
+                                            </div>
+                                            <div class="text-right" style="margin-top: 20px;">
+                                                <button id="downloadButton" class="btn btn-primary">Download Data</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    
 
                                         
                         <div class="tab-pane fade" id="graphicalView">  
@@ -451,10 +452,67 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Show query in an alert popup
-document.getElementById('showQueryButton').addEventListener('click', () => {
-    alert(`SQL Query: ${fetchedQuery}`);
+document.getElementById('downloadButton').addEventListener('click', function() {
+    // Function to convert table data to CSV format
+    function tableToCSV() {
+        let csv = [];
+        let rows = document.querySelectorAll("#dataTables-example tr");
+
+        for (let i = 0; i < rows.length; i++) {
+            let row = [], cols = rows[i].querySelectorAll("td, th");
+
+            for (let j = 0; j < cols.length; j++) {
+                row.push(cols[j].innerText);
+            }
+
+            csv.push(row.join(","));
+        }
+
+        return csv.join("\n");
+    }
+
+    // Function to download the CSV file
+    function downloadCSV(csv, filename) {
+        let csvFile;
+        let downloadLink;
+
+        csvFile = new Blob([csv], {type: "text/csv"});
+        downloadLink = document.createElement("a");
+        downloadLink.download = filename;
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+        downloadLink.style.display = "none";
+
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+    }
+
+    // Get the table data as CSV and download it
+    let csv = tableToCSV();
+    downloadCSV(csv, "table_data.csv");
 });
+
+document.getElementById('searchSelect').addEventListener('change', function() {
+    const selectedValue = this.value;
+    
+    if (selectedValue) {
+        fetch('http://localhost:8001/set_db_name', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ db_name: selectedValue })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            // Optionally, you can add more actions here, like updating the UI
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+});
+
 
 const msgerForm = document.querySelector(".msger-inputarea");
 const msgerInput = document.querySelector(".msger-input");
