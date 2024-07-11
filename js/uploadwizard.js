@@ -337,7 +337,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     async function createTablesAndInsertData() {
+        const loader = document.getElementById('loader');
+    
         try {
+            // Show the loader
+            loader.style.display = 'block';
+    
             const response = await fetch('http://127.0.0.1:8000/create_tables_with_relationships', {
                 method: 'POST',
                 headers: {
@@ -345,11 +350,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 body: JSON.stringify({})  // No body needed for this request
             });
+    
             if (!response.ok) {
                 throw new Error('Failed to create tables with relationships');
             }
+    
             const data = await response.json();
             console.log(data);
+    
             swal({
                 title: "Success",
                 text: "Data has been successfully loaded into the Database!",
@@ -358,6 +366,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }).then(async () => {
                 try {
                     window.location.href = 'dataWizard.html';
+    
                     const createViewResponse = await fetch('http://127.0.0.1:8000/create_view', {
                         method: 'POST',
                         headers: {
@@ -365,19 +374,23 @@ document.addEventListener("DOMContentLoaded", function () {
                         },
                         body: JSON.stringify({})  // No body needed for this request
                     });
+    
                     if (!createViewResponse.ok) {
                         throw new Error('Failed to create view');
                     }
+    
                     console.log('View created successfully');
-                    // Redirect to another page
-                    // window.location.href = 'dataWizard.html';
                 } catch (createViewError) {
                     console.error('Error creating view:', createViewError);
                     // Handle the error accordingly, perhaps show another alert or message to the user
+                } finally {
+                    // Hide the loader
+                    loader.style.display = 'none';
                 }
             });
         } catch (error) {
             console.error('Error:', error);
+    
             swal({
                 title: "Error",
                 text: "There was an error loading data into the Database!",
@@ -387,6 +400,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Redirect to another page or handle the error accordingly
                 window.location.href = 'dataWizard.html';
             });
+        } finally {
+            // Hide the loader
+            loader.style.display = 'none';
         }
     }
     
