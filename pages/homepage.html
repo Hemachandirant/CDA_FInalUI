@@ -25,7 +25,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.full.min.js"></script> -->
 
-
+    <script src="https://alcdn.msauth.net/browser/2.19.0/js/msal-browser.min.js"></script>
+    <script defer src="authConfig.js"></script>
+    <script defer src="authPopup.js"></script>
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
@@ -84,7 +86,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <a class="active" onclick="signOut()"><i class="fa fa-sign-out fa-fw" style="color: white;"></i><span class="menu-text"> Logout</span></a>
                         </li>
                     </ul>
                 </li>
@@ -115,7 +117,8 @@
                         <a href="dataWizard.html" class="active"><i class="fa fa-tasks fa-fw" style="color: white;"></i><span class="menu-text" style="color: white;"> Data Insights</span></a>  
                     </li>  
                     <li>  
-                        <a href="login.html" class="active"><i class="fa fa-sign-out fa-fw" style="color: white;"></i><span class="menu-text"> Logout</span></a>  
+                        <a class="active" onclick="signOut()"><i class="fa fa-sign-out fa-fw" style="color: white;"></i><span class="menu-text"> Logout</span></a>
+
                     </li>  
                 </ul>  
             </div>  
