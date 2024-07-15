@@ -4,7 +4,9 @@
 
 
 body {
-   background-color: #f8f8f8;
+   /* background-color: #f8f8f8; */
+   background-color: #304565;
+
 }
 
 #wrapper {
@@ -868,7 +870,7 @@ button:hover{
    color: white;
 }
   
-  .bottoms {
+.bottoms {
    display: flex;
    justify-content: space-between;
    background-color: #304666;
@@ -879,7 +881,9 @@ button:hover{
    bottom: 0;
    left: 0;
    /* margin-top: 40px; */
+   border-top: 1px solid black; 
 }
+
 
 .bottoms-content {
    padding-left: 50px;
