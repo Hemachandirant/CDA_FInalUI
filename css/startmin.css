@@ -3,22 +3,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 
 
-html, body {
-   background-color: #304565;
-   margin: 0;
-   padding: 0;
-   min-height: 100vh;
-}
-
 body {
-   margin-bottom: 0;
-   padding-bottom: 0;
-   /* overflow: hidden; */
+   /* background-color: #f8f8f8; */
+   background-color: #304565;
+
 }
 
 #wrapper {
    width: 100%;
-   height: 90vh;
+   height: 89vh;
 }
 
 #page-wrapper.minimized {  
@@ -30,7 +23,6 @@ body {
    min-height: 250px;
    background-color: #fff;
 }
-
 
 .sidebar .sidebar-search .custom-search-form {  
    display: inline-block;  
@@ -882,7 +874,7 @@ button:hover{
    display: flex;
    justify-content: space-between;
    background-color: #304666;
-   color: grey;
+   color: white;
    /* padding: 10px 20px; */
    width: 100%;
    /* position: fixed; */
@@ -890,7 +882,6 @@ button:hover{
    left: 0;
    /* margin-top: 40px; */
    border-top: 1px solid black; 
-   font-family: "Poppins", sans-serif;
 }
 
 
@@ -1102,7 +1093,6 @@ body, html {
    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
    font-family: 'Poppins', sans-serif;
    border-radius: 16px;
-   margin-top: 0%;
 }
 
 .wizard-container .wiz-card .form {

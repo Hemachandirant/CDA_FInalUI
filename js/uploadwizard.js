@@ -336,6 +336,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+
     async function createTablesAndInsertData() {
         const loader = document.getElementById('loader');
     
