@@ -2,16 +2,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 
+html, body {
+   background-color: #304565;
+   margin: 0;
+   padding: 0;
+}
 
 body {
-   /* background-color: #f8f8f8; */
-   background-color: #304565;
-
+   margin-bottom: 0;
+   padding-bottom: 0;
 }
 
 #wrapper {
    width: 100%;
-   height: 89vh;
+   max-height: 89vh;
 }
 
 #page-wrapper.minimized {  
@@ -888,8 +892,11 @@ button:hover{
 .bottoms-content {
    padding-left: 50px;
    padding-right: 50px;
-   padding-top: 5px;
-   padding-bottom: 5px;
+   /* padding-top: 5px; */
+   /* padding-bottom: 5px; */
+   margin-top: 10px;
+   color: #AFAFAF;
+   font-family: Arial, Helvetica, sans-serif;
 }
 
   .landing-container{
