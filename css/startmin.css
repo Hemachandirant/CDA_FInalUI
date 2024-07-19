@@ -1700,3 +1700,67 @@ select {
 #sidebarToggle:focus {  
    outline: none;  
 } 
+
+
+
+/* Responsive overlay style */
+
+.overlay {
+   display: none;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.7);
+   backdrop-filter: blur(5px);
+   z-index: 9999;
+   justify-content: center;
+   align-items: center;
+}
+
+.popup {
+   background-color: white;
+   padding: 30px;
+   border-radius: 10px;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+   text-align: center;
+   max-width: 80%;
+}
+
+.popup h2 {
+   color: #333;
+   margin-bottom: 15px;
+}
+
+.popup p {
+   color: #666;
+   margin-bottom: 20px;
+}
+
+/* Basic styles for the main content */
+header, main, footer {
+   margin-bottom: 20px;
+}
+
+h1, h2 {
+   margin-bottom: 10px;
+}
+
+/* Media query for screens 768px and below */
+@media screen and (max-width: 768px) {
+   body {
+       overflow: hidden;
+   }
+   
+   .overlay {
+       display: flex;
+   }
+
+   /* Optional: Hide all content except the overlay on small screens */
+   
+   body > *:not(.overlay) {
+       display: none;
+   }
+  
+}
