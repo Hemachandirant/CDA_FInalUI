@@ -345,7 +345,7 @@
 document.addEventListener('DOMContentLoaded', function () {
         console.log('DOM fully loaded and parsed');
 
-        fetch('http://127.0.0.1:8001/schemas')  // Ensure this URL matches your FastAPI server's URL
+        fetch('http://20.232.65.230/schemas')  // Ensure this URL matches your FastAPI server's URL
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const query = document.getElementById('queryInput').value;
 
     // API URL
-    const apiUrl = 'http://127.0.0.1:8001/query';
+    const apiUrl = 'http://20.232.65.230/query';
 
     // Fetch data from the API
     fetch(apiUrl, {
@@ -483,7 +483,7 @@ document.getElementById('searchSelect').addEventListener('change', function() {
     const selectedValue = this.value;
     
     if (selectedValue) {
-        fetch('http://localhost:8001/set_db_name', {
+        fetch('http://20.232.65.230/set_db_name', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
