@@ -345,13 +345,16 @@
 document.addEventListener('DOMContentLoaded', function () {
         console.log('DOM fully loaded and parsed');
 
-        fetch('http://20.232.65.230/schemas')  // Ensure this URL matches your FastAPI server's URL
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
+        const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        const apiUrl = 'http://20.232.65.230/schemas';
+
+fetch(proxyUrl + apiUrl)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
             .then(data => {
                 console.log('Data fetched:', data);
                 const selectElement = document.getElementById('searchSelect');
@@ -375,16 +378,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const query = document.getElementById('queryInput').value;
 
     // API URL
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const apiUrl = 'http://20.232.65.230/query';
 
-    // Fetch data from the API
-    fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ query: query })   // Update the key to match the expected field
-    })
+// Fetch data from the API through the proxy
+fetch(proxyUrl + apiUrl, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ query: query })   // Update the key to match the expected field
+})
     .then(response => response.json())
     .then(data => {
         // Assume data is directly an array
@@ -481,9 +485,11 @@ document.getElementById('downloadButton').addEventListener('click', function() {
 
 document.getElementById('searchSelect').addEventListener('change', function() {
     const selectedValue = this.value;
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const apiUrl = 'http://20.232.65.230/set_db_name';
     
     if (selectedValue) {
-        fetch('http://20.232.65.230/set_db_name', {
+        fetch(proxyUrl + apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
