@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/create_db', {
+            const response = await fetch('https://uploadwizard-azure.onrender.com/create_db', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/upload_file_info', {
+            const response = await fetch('https://uploadwizard-azure.onrender.com/upload_file_info', {
                 method: 'POST',
                 body: formData
             });
@@ -293,7 +293,7 @@ document.addEventListener("DOMContentLoaded", function () {
         sanitizationLoader.style.display = 'block'; // Show the loader for data sanitization
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/upload_and_clean', {
+            const response = await fetch('https://uploadwizard-azure.onrender.com/upload_and_clean', {
                 method: 'POST'
             });
 
@@ -345,7 +345,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Show the loader
             loader.style.display = 'block';
     
-            const response = await fetch('http://127.0.0.1:8000/create_tables_with_relationships', {
+            const response = await fetch('https://uploadwizard-azure.onrender.com/create_tables_with_relationships', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -369,7 +369,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 try {
                     window.location.href = 'dataWizard.html';
     
-                    const createViewResponse = await fetch('http://127.0.0.1:8000/create_view', {
+                    const createViewResponse = await fetch('https://uploadwizard-azure.onrender.com/create_view', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
