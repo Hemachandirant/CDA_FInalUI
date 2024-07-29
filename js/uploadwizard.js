@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", function () {
             loader.style.display = 'none';  // Hide the loader
         }
     }
-
+#//test
     async function sanitizeData() {
         sanitizationLoader.style.display = 'block'; // Show the loader for data sanitization
 
