@@ -249,49 +249,25 @@
                         </div>
 
                                         
-                        <div class="tab-pane fade" id="graphicalView">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="col-lg-12">
-                                        <iframe id="graphicalViewIframe" width="100%" height="800px" frameborder="0"></iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="tab-pane fade" id="graphicalView">  
+                            <div class="row">  
+                                <div class="col-lg-12">  
+                                    <div class="col-lg-12">  
+                                        <iframe id="graphicalIframe" src="https://data-visualization-r7ca.onrender.com/?file=string.csv" width="100%" height="800px" frameborder="0"></iframe>  
+                                    </div>  
+                                </div>  
+                            </div>  
+                        </div>     
                         
                         <div class="tab-pane fade" id="chatview">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="col-lg-12">
-                                        <iframe id="chatViewIframe" width="100%" height="800px" frameborder="0"></iframe>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class = "row">
+                                <div class="col-lg-12">  
+                                    <div class="col-lg-12">  
+                                        <iframe id="chatIframe" src="https://chat-view.onrender.com/?file=string.csv" width="100%" height="800px" frameborder="0"></iframe>  
+                                    </div>  
+                                </div> 
+                            </div>  
                         </div>
-                        
-                        <script>
-                            async function setIframeSources() {
-                                try {
-                                    const response = await fetch('http://127.0.0.1:8001/set_db_name', {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json'
-                                        },
-                                        body: JSON.stringify({ db_name: selectedValue })
-                                    });
-                                    const data = await response.json();
-                                    const dbName = data.db_name;
-                        
-                                    // Update the src attribute with the fetched database name
-                                    document.getElementById('graphicalViewIframe').src = "https://data-visualization-r7ca.onrender.com/?file=string.csv";
-                                    document.getElementById('chatViewIframe').src = "https://chat-view.onrender.com/?file=string.csv";
-                                } catch (error) {
-                                    console.error('Error setting iframe sources:', error);
-                                }
-                            }
-                        
-                            setIframeSources();
-                        </script>
                         
                                         <!-- <div class="tab-pane fade" id="tab-primary-4">Page 4</div>
                                         <div class="tab-pane fade" id="tab-primary-5">Page 5</div> -->
@@ -511,8 +487,16 @@ document.getElementById('downloadButton').addEventListener('click', function() {
 document.getElementById('searchSelect').addEventListener('change', function() {
     const selectedValue = this.value;
     const apiUrl = 'http://127.0.0.1:8001/set_db_name';
-    
+
     if (selectedValue) {
+        console.log('Selected DB Name:', selectedValue); // Log the selected DB name
+        
+        // Update the iframe src attributes with the selected DB name
+        const graphicalIframe = document.getElementById('graphicalIframe');
+        const chatIframe = document.getElementById('chatIframe');
+        graphicalIframe.src = `https://data-visualization-r7ca.onrender.com/?file=${selectedValue}.csv`;
+        chatIframe.src = `https://chat-view.onrender.com/?file=${selectedValue}.csv`;
+        
         fetch(apiUrl, {
             method: 'POST',
             headers: {
@@ -523,7 +507,6 @@ document.getElementById('searchSelect').addEventListener('change', function() {
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            console.log('Database name set to:', data.db_name);
             // Optionally, you can add more actions here, like updating the UI
         })
         .catch((error) => {
@@ -531,6 +514,7 @@ document.getElementById('searchSelect').addEventListener('change', function() {
         });
     }
 });
+
 
 
 const msgerForm = document.querySelector(".msger-inputarea");
@@ -595,8 +579,6 @@ async function botResponse(userMsg) {
         appendMessage(BOT_NAME, BOT_IMG, "left", "Sorry, there was an error. Please try again later.");
     }
 }
-
-
 function formatTable(data) {
     if (!Array.isArray(data) || data.length === 0) return "No data available.";
     
@@ -680,9 +662,26 @@ function formatDate(date) {
         </script>
 
         <script>  
-        // Function to fetch the database name
+    //     async function setIframeSources() {
+    //     try {
+    //         const response = await fetch('http://127.0.0.1:8001/set_db_name', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({ db_name: selectedValue })
+    //         });
+    //         const data = await response.json();
+    //         const dbName = data.db_name;
 
+    //         document.getElementById('graphicalViewIframe').src = `https://data-visualization-r7ca.onrender.com/?file=${dbName}.csv`;
+    //         document.getElementById('chatViewIframe').src = `https://chat-view.onrender.com/?file=${dbName}.csv`;
+    //     } catch (error) {
+    //         console.error('Error setting iframe sources:', error);
+    //     }
+    // }
 
+    // setIframeSources();
         document.addEventListener('DOMContentLoaded', function () {  
             const sidebar = document.querySelector('.sidebar');  
             const pageWrapper = document.querySelector('#page-wrapper');  
