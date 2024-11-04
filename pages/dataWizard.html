@@ -494,7 +494,8 @@ document.getElementById('searchSelect').addEventListener('change', function() {
         // Update the iframe src attributes with the selected DB name
         const graphicalIframe = document.getElementById('graphicalIframe');
         const chatIframe = document.getElementById('chatIframe');
-        graphicalIframe.src = `https://data-visualization-r7ca.onrender.com/?file=${selectedValue}.csv`;
+       // graphicalIframe.src = `https://data-visualization-r7ca.onrender.com/?file=${selectedValue}.csv`;
+        graphicalIframe.src = `https://data-visualization-r7ca.onrender.com/?file=resource_allocations.csv`;
         chatIframe.src = `https://chat-view.onrender.com/?file=${selectedValue}.csv`;
         
         fetch(apiUrl, {
