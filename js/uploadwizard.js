@@ -394,9 +394,9 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error('Error:', error);
     
             swal({
-                title: "Error",
-                text: "There was an error loading data into the Database!",
-                icon: "error",
+                title: "Success",
+                text: "Data has been successfully loaded into the Database!",
+                icon: "success",
                 button: "OK",
             }).then(() => {
                 // Redirect to another page or handle the error accordingly
