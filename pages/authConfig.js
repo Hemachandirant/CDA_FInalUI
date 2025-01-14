@@ -6,8 +6,8 @@ const msalConfig = {
         // redirectUri: "http://localhost:5505/pages/homepage.html"
     },
     cache: {
-        cacheLocation: "sessionStorage",
-        storeAuthStateInCookie: false,
+        cacheLocation: "localStorage",
+        storeAuthStateInCookie: true,
     },
     system: {
         loggerOptions: {
