@@ -9,36 +9,36 @@ const msalConfig = {
         cacheLocation: "sessionStorage",
         storeAuthStateInCookie: false,
     },
-    system: {    
-        loggerOptions: {    
-            loggerCallback: (level, message, containsPii) => {    
-                if (containsPii) {        
-                    return;        
-                }        
-                switch (level) {        
-                    case msal.LogLevel.Error:        
-                        console.error(message);        
-                        return;        
-                    case msal.LogLevel.Info:        
-                        console.info(message);        
-                        return;        
-                    case msal.LogLevel.Verbose:        
-                        console.debug(message);        
-                        return;        
-                    case msal.LogLevel.Warning:        
-                        console.warn(message);        
-                        return;        
-                }    
-            }    
-        }    
+    system: {
+        loggerOptions: {
+            loggerCallback: (level, message, containsPii) => {
+                if (containsPii) {
+                    return;
+                }
+                switch (level) {
+                    case msal.LogLevel.Error:
+                        console.error(message);
+                        return;
+                    case msal.LogLevel.Info:
+                        console.info(message);
+                        return;
+                    case msal.LogLevel.Verbose:
+                        console.debug(message);
+                        return;
+                    case msal.LogLevel.Warning:
+                        console.warn(message);
+                        return;
+                }
+            }
+        }
     }
-};
-
-const loginRequest = {
+ };
+  
+ const loginRequest = {
     scopes: ["User.Read"]
-};
-
-const tokenRequest = {
+ };
+  
+ const tokenRequest = {
     scopes: ["User.Read", "Mail.Read"],
     forceRefresh: false
-};
+ };
