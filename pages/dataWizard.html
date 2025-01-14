@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('DOM fully loaded and parsed');
 
         // const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-        const apiUrl = 'https://sqlagent-pka8.onrender.com/schemas';
+        const apiUrl = 'https://cda-sqlagent-bdbybteugkbagpb6.eastus-01.azurewebsites.net/schemas';
 
 fetch(apiUrl)
     .then(response => {
@@ -380,7 +380,7 @@ fetch(apiUrl)
     const query = document.getElementById('queryInput').value;
 
    
-    const apiUrl = 'https://sqlagent-pka8.onrender.com/query';
+    const apiUrl = 'https://cda-sqlagent-bdbybteugkbagpb6.eastus-01.azurewebsites.net/query';
 
 // Fetch data from the API through the proxy
 fetch(apiUrl, {
@@ -486,7 +486,7 @@ document.getElementById('downloadButton').addEventListener('click', function() {
 
 document.getElementById('searchSelect').addEventListener('change', function() {
     const selectedValue = this.value;
-    const apiUrl = 'https://sqlagent-pka8.onrender.com/set_db_name';
+    const apiUrl = 'https://cda-sqlagent-bdbybteugkbagpb6.eastus-01.azurewebsites.net/set_db_name';
 
     if (selectedValue) {
         console.log('Selected DB Name:', selectedValue); // Log the selected DB name
